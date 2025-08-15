@@ -1,9 +1,19 @@
 import MeetupList from '../components/meetups/MeetupList';
 import { MongoClient } from "mongodb";
+import Head from 'next/head';
 
 function Homepage(props) {
     return (
-        <MeetupList meetups={props.meetups} />
+        <>
+            <Head>
+                <title>Reacts Meetups</title>
+                <meta
+                    name='description'
+                    content='Meetups'
+                />
+            </Head>
+            <MeetupList meetups={props.meetups} />
+        </>
     )
 }
 
