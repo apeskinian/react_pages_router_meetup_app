@@ -24,10 +24,34 @@ const DUMMY_MEETUPS = [
     }
 ]
 
-function Homepage() {
+function Homepage(props) {
     return (
-        <MeetupList meetups={DUMMY_MEETUPS} />
+        <MeetupList meetups={props.meetups} />
     )
+}
+
+// updates data on every request
+// export function getServerSideProps(context) {
+//     const req = context.req;
+//     const res = context.res;
+//     // running on server
+//     return {
+//         props: {
+//             meetups: DUMMY_MEETUPS
+//         }
+//     };
+// }
+
+// getting data pre rendering on the server before it hits the client machine
+export async function getStaticProps() {
+    // fetch data from api or db
+    return {
+        props: {
+            meetups: DUMMY_MEETUPS
+        },
+        // regenerate data every x seconds
+        revalidate: 10
+    };
 }
 
 export default Homepage;
